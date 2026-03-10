@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Verificación de Google Search Console -->
+    <meta name="google-site-verification" content="google05f4f150c76027da" />
+    
     <title>Sapiens | Inteligencia Colectiva y Artificial</title>
     <meta name="description" content="Portal de sabiduría potenciado por IA y colaboración humana.">
     
@@ -135,7 +138,7 @@
             </div>
         </div>
 
-        <!-- OTRAS SECCIONES (IGUALES AL ANTERIOR) -->
+        <!-- SECCIÓN PUBLICAR -->
         <div id="section-publicar" class="page-section hidden fade-in">
              <div class="max-w-3xl mx-auto bg-white p-10 md:p-16 rounded-[3rem] border border-slate-100 shadow-2xl">
                 <div class="text-center mb-12">
@@ -247,7 +250,6 @@
                 critical: "Eres un consultor escéptico. Analiza los riesgos, los puntos débiles y da una opinión honesta aunque sea dura."
             };
 
-            // Llamadas paralelas para optimizar tiempo
             const [advice, imageUrl] = await Promise.all([
                 callGemini(query, instructions[aiMode]),
                 generateImage(query)
@@ -371,103 +373,71 @@
                         <p>La resiliencia no es simplemente la capacidad de "aguantar" los golpes de la vida, sino la habilidad de utilizar esa misma adversidad como combustible para el crecimiento personal. Hace más de 2000 años, los filósofos estoicos desarrollaron un sistema operativo mental precisamente para esto, y hoy es más relevante que nunca.</p>
                         
                         <h4>La Dicotomía del Control</h4>
-                        <p>El pilar fundamental del estoicismo, articulado magistralmente por Epicteto, es la dicotomía del control. Su premisa es radicalmente simple: hay cosas que dependen de nosotros y cosas que no. Sufrimos cuando invertimos nuestra energía emocional en el segundo grupo.</p>
+                        <p>El pilar fundamental del estoicismo, articulado magistralmente por Epicteto, es la dicotomía del control. Su premisa es radicalmente simple: hay cosas que dependen de nosotros y cosas que no.</p>
                         <ul>
-                            <li><strong>Lo que controlas:</strong> Tus juicios, tus impulsos, tus deseos, tus aversiones. En resumen, tus propias acciones y reacciones mentales.</li>
-                            <li><strong>Lo que NO controlas:</strong> El clima, la economía, las opiniones de los demás, el tráfico, la genética, el pasado.</li>
+                            <li><strong>Lo que controlas:</strong> Tus juicios, tus impulsos, tus deseos, tus aversiones.</li>
+                            <li><strong>Lo que NO controlas:</strong> El clima, la economía, las opiniones de los demás.</li>
                         </ul>
-                        <p>Al redirigir toda nuestra ansiedad hacia nuestra esfera de control, experimentamos una liberación inmediata. El estrés es, en gran medida, la fricción entre la realidad inamovible y nuestra exigencia ilusoria de querer controlarla.</p>
+                        <p>Al redirigir toda nuestra ansiedad hacia nuestra esfera de control, experimentamos una liberación inmediata.</p>
                         
                         <h4>Amor Fati: Amar el Destino</h4>
-                        <p>Friedrich Nietzsche popularizó este concepto, aunque sus raíces son profundamente estoicas. <em>Amor Fati</em> no es resignación pasiva; es la aceptación entusiasta de todo lo que ocurre. Como decía el emperador romano Marco Aurelio: "El fuego brillante convierte en llama y resplandor todo lo que se le echa". Un obstáculo en el camino no bloquea el camino; se convierte en el camino.</p>
+                        <p>Amor Fati no es resignación pasiva; es la aceptación entusiasta de todo lo que ocurre. Un obstáculo en el camino no bloquea el camino; se convierte en el camino.</p>
                         
                         <h4>Prácticas Diarias para Forjar Resiliencia</h4>
-                        <p>La filosofía no debe quedarse en la teoría académica. El conocimiento sin aplicación es inútil. Aquí tienes ejercicios prácticos para integrar en tu día a día:</p>
                         <ul>
-                            <li><strong>Incomodidad Voluntaria:</strong> Toma duchas frías, ayuna ocasionalmente o camina bajo la lluvia sin paraguas. Acostumbrar al cuerpo y a la mente a la incomodidad controlada reduce dramáticamente el miedo a perder las comodidades modernas.</li>
-                            <li><strong>Premeditatio Malorum (Visualización Negativa):</strong> Dedica 5 minutos por la mañana a imaginar los peores escenarios posibles para tu día. Cuando (y si) ocurren, ya estarás preparado psicológicamente. Si no ocurren, sentirás una inmensa gratitud por la normalidad.</li>
-                            <li><strong>El Diario Nocturno:</strong> Al final del día, reflexiona en silencio: ¿Qué hice mal hoy? ¿Qué hice bien? ¿Qué hábito o emoción me dominó? La autoconsciencia es el primer e indispensable paso hacia el autodominio.</li>
+                            <li><strong>Incomodidad Voluntaria:</strong> Toma duchas frías o ayuna ocasionalmente para fortalecer la mente.</li>
+                            <li><strong>Premeditatio Malorum:</strong> Visualiza los peores escenarios para estar preparado psicológicamente.</li>
+                            <li><strong>El Diario Nocturno:</strong> Reflexiona sobre tus acciones diarias para mejorar el autodominio.</li>
                         </ul>
-                        <p>Recuerda que la tranquilidad mental no se logra huyendo de las tormentas, sino construyendo un barco capaz de navegar a través de ellas. La resiliencia se entrena todos los días.</p>
                     ` 
                 },
                 { 
                     title: "Neurociencia del Hábito: Reprogramando tu Cerebro", 
-                    description: "La regla de los 21 días es un mito. Descubre la realidad científica sobre cómo se forman y destruyen los hábitos en tu red neuronal.", 
+                    description: "Descubre la realidad científica sobre cómo se forman y destruyen los hábitos en tu red neuronal.", 
                     source: {name: "BrainHealth"}, 
                     image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800", 
                     category: "health", 
                     fullText: `
-                        <p>Durante décadas, los gurús de la autoayuda han repetido que se necesitan 21 días para formar un hábito. Esta idea nació de un malentendido de los estudios de cirugía plástica de Maxwell Maltz en los años 60. La ciencia actual, liderada por investigadores como Phillippa Lally del University College de Londres, nos dice algo muy diferente: en promedio, se necesitan 66 días para que un nuevo comportamiento se vuelva automático, variando entre 18 y 254 días dependiendo de la complejidad de la tarea.</p>
-                        
-                        <h4>El Bucle del Hábito y la Mielina</h4>
-                        <p>Desde una perspectiva neurobiológica, un hábito no es más que una ruta neuronal fuertemente mielinizada. La mielina es una sustancia aislante que recubre los axones de las neuronas, permitiendo que las señales eléctricas viajen más rápido. Cuanto más repites una acción, más gruesa se vuelve esta capa. El proceso se divide en tres partes, popularizadas por Charles Duhigg:</p>
+                        <p>En promedio, se necesitan 66 días para que un nuevo comportamiento se vuelva automático. Un hábito es una ruta neuronal fuertemente mielinizada.</p>
+                        <h4>El Bucle del Hábito</h4>
                         <ul>
-                            <li><strong>La Señal (Cue):</strong> El detonante que le dice a tu cerebro que entre en modo automático. Puede ser una hora del día, un lugar o un estado emocional.</li>
-                            <li><strong>La Rutina:</strong> El comportamiento en sí mismo, ya sea físico, mental o emocional.</li>
-                            <li><strong>La Recompensa:</strong> El pico de dopamina o satisfacción que ayuda a tu cerebro a decidir si vale la pena recordar este bucle para el futuro.</li>
+                            <li><strong>La Señal:</strong> El detonante del comportamiento.</li>
+                            <li><strong>La Rutina:</strong> La acción realizada.</li>
+                            <li><strong>La Recompensa:</strong> El pico de dopamina satisfactorio.</li>
                         </ul>
-                        
-                        <h4>La Trampa de la Dopamina Barata</h4>
-                        <p>En el entorno moderno, nuestro sistema de recompensas está secuestrado. Las redes sociales, la comida ultraprocesada y los videojuegos están diseñados para ofrecer recompensas masivas de dopamina sin requerir esfuerzo previo. Esto eleva nuestro umbral de tolerancia, haciendo que los "hábitos saludables" (como leer o hacer ejercicio), que ofrecen una liberación de dopamina más lenta y sostenida, parezcan aburridos en comparación.</p>
-                        
-                        <h4>Cómo Hackear tu Propio Sistema</h4>
-                        <p>Para construir hábitos duraderos, no dependas de la motivación; la motivación es una emoción temporal. Depende del diseño de tu entorno:</p>
+                        <h4>Hackear tu Sistema</h4>
                         <ul>
-                            <li><strong>Fricción Ambiental:</strong> Haz que los malos hábitos requieran muchos pasos (guarda el mando de la TV en otra habitación, bloquea apps de tu móvil). Haz que los buenos hábitos tengan cero fricción (deja la ropa de deporte al lado de la cama).</li>
-                            <li><strong>Acumulación de Hábitos (Habit Stacking):</strong> Une el nuevo hábito a uno que ya tengas sólidamente establecido. Ejemplo: "Después de servirme mi café matutino (hábito actual), escribiré en mi diario durante 2 minutos (hábito nuevo)".</li>
-                            <li><strong>Identidad, no Metas:</strong> No te digas "quiero leer un libro". Dite a ti mismo "soy un lector". Los comportamientos son, en última instancia, un reflejo de nuestra autoimagen.</li>
+                            <li><strong>Fricción Ambiental:</strong> Facilita los buenos hábitos y dificulta los malos.</li>
+                            <li><strong>Acumulación de Hábitos:</strong> Une un hábito nuevo a uno existente.</li>
                         </ul>
                     ` 
                 },
                 { 
-                    title: "La Psicología del Dinero: Estrategias de Riqueza Asimétrica", 
-                    description: "El éxito financiero no es una ciencia dura; es una habilidad blanda. Aprende a gestionar tus emociones frente al mercado.", 
+                    title: "La Psicología del Dinero: Estrategias de Riqueza", 
+                    description: "El éxito financiero no es una ciencia dura; es una habilidad blanda centrada en el comportamiento.", 
                     source: {name: "Capital Sapiens"}, 
                     image: "https://images.unsplash.com/photo-1611974714024-4607a5015a73?auto=format&fit=crop&q=80&w=800", 
                     category: "business", 
                     fullText: `
-                        <p>Hacer dinero tiene muy poco que ver con tu nivel de inteligencia y mucho que ver con tu comportamiento. A menudo enseñamos las finanzas como un campo de las matemáticas, donde pones datos en una fórmula y obtienes qué hacer. Pero en el mundo real, la gente no toma decisiones financieras en una hoja de cálculo; las toman en la mesa de la cena o en una sala de reuniones, influenciados por su ego, su orgullo y sus miedos.</p>
-                        
-                        <h4>Ser Rico vs. Ser Próspero (Wealth)</h4>
-                        <p>Hay una diferencia fundamental que la sociedad suele ignorar. "Rico" (Rich) es un estado actual. Significa que tienes ingresos altos hoy para comprar coches caros o ropa de diseñador. "Prosperidad" o "Riqueza" (Wealth), por otro lado, es lo que no se ve. Es el dinero que no se ha gastado. Son los activos financieros, las inversiones y el capital no ejecutado.</p>
-                        <p>La riqueza te otorga el activo más valioso de todos: el control sobre tu tiempo. El mayor dividendo que puede pagar el dinero es la capacidad de despertarte cada mañana y decir: "Hoy puedo hacer lo que quiera".</p>
-                        
-                        <h4>La Octava Maravilla: El Interés Compuesto</h4>
-                        <p>El cerebro humano no está diseñado para comprender el crecimiento exponencial. Si te digo que ahorres 100 dólares al mes al 8% de interés anual, tu cerebro intuitivo subestima el resultado a 30 años. No es una suma lineal. La mayor parte del crecimiento ocurre en la fase final de la inversión.</p>
-                        <ul>
-                            <li>Warren Buffett acumuló casi el 95% de su fortuna neta <em>después</em> de cumplir 65 años. Su secreto no fue solo elegir buenas acciones, sino empezar a los 10 años y no interrumpir el proceso de interés compuesto.</li>
-                            <li><strong>Regla de Oro:</strong> La primera regla del interés compuesto es nunca interrumpirlo innecesariamente. Las crisis bursátiles son peajes que hay que pagar, no multas que hay que evitar.</li>
-                        </ul>
-                        
-                        <h4>Apuestas Asimétricas y Antifragilidad</h4>
-                        <p>Como plantea Nassim Taleb, un portafolio robusto sobrevive a las crisis, pero un portafolio <em>antifrágil</em> se beneficia de ellas. Una estrategia asimétrica significa buscar oportunidades donde la pérdida máxima está estrictamente limitada (pierdes 1X), pero la ganancia potencial es ilimitada (puedes ganar 10X, 50X o 100X).</p>
-                        <p>Para la mayoría de los inversores individuales, la mejor "apuesta asimétrica" es invertir constantemente en fondos indexados globales de bajo coste, ignorar las noticias financieras y dedicar su tiempo y energía a aumentar sus ingresos activos.</p>
+                        <p>La riqueza te otorga el activo más valioso de todos: el control sobre tu tiempo.</p>
+                        <h4>Interés Compuesto</h4>
+                        <p>La primera regla del interés compuesto es nunca interrumpirlo innecesariamente.</p>
+                        <h4>Estrategias Asimétricas</h4>
+                        <p>Busca oportunidades donde la pérdida esté limitada pero la ganancia potencial sea ilimitada.</p>
                     ` 
                 },
                 { 
                     title: "Simbiosis Cognitiva: Tu Cerebro en la Era de la IA", 
-                    description: "La IA no te reemplazará; te reemplazará alguien que use IA. Aprende a construir tu 'Segundo Cerebro' tecnológico.", 
+                    description: "Aprende a construir tu 'Segundo Cerebro' tecnológico para potenciar tu capacidad intelectual.", 
                     source: {name: "Tech Mastery"}, 
                     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800", 
                     category: "technology", 
                     fullText: `
-                        <p>Estamos atravesando un cambio de paradigma histórico. La Inteligencia Artificial Generativa no es simplemente una herramienta de software más; es un exoesqueleto para la mente humana. A lo largo de la historia, la tecnología nos ha ayudado a externalizar el trabajo físico (motores, grúas, tractores). Hoy, por primera vez, estamos externalizando el trabajo cognitivo.</p>
-                        
-                        <h4>De Creador a Curador y Editor</h4>
-                        <p>El cuello de botella de la productividad humana ya no es la generación de contenido (escribir código, redactar correos, diseñar imágenes). El costo de producción ha bajado casi a cero. El nuevo cuello de botella es la <strong>visión, el gusto y la capacidad de discernimiento</strong>.</p>
-                        <p>Los profesionales del futuro no se sentarán a mirar una página en blanco. Su trabajo consistirá en dirigir modelos de IA, evaluar sus múltiples outputs, corregir alucinaciones y ensamblar las piezas correctas para crear un producto final impecable. El rol del "trabajador del conocimiento" evoluciona hacia el de un "director de orquesta".</p>
-                        
-                        <h4>El Peligro de la Descarga Cognitiva (Cognitive Offloading)</h4>
-                        <p>A pesar de sus beneficios, existe un riesgo neurológico. Cuando usamos el GPS del móvil en exceso, la parte de nuestro cerebro dedicada a la navegación espacial (el hipocampo) se atrofia. ¿Qué pasará con nuestra capacidad de razonamiento crítico cuando la IA sintetice todos nuestros documentos y libros?</p>
-                        <ul>
-                            <li>No uses la IA para que piense <em>por ti</em>. Úsala para pensar <em>contigo</em>.</li>
-                            <li><strong>El sparring socrático:</strong> En lugar de pedirle a la IA que te dé la respuesta final, pídele que critique tus ideas, que te haga preguntas difíciles o que te señale los sesgos en tu razonamiento.</li>
-                        </ul>
-                        
-                        <h4>Construyendo un Segundo Cerebro Interconectado</h4>
-                        <p>La metodología del "Segundo Cerebro" (popularizada por Tiago Forte) cobra una nueva dimensión con los Modelos de Lenguaje Grande (LLMs). En lugar de depender de tu memoria biológica —que es falible y volátil— deberías externalizar tus notas, aprendizajes y proyectos en una bóveda digital (como Notion, Obsidian o Roam).</p>
-                        <p>Al conectar una IA personalizada a tus propias notas, ya no solo buscas palabras clave. Entras en una conversación dinámica con tu propio conocimiento pasado, descubriendo conexiones latentes entre ideas que leíste hace años y problemas que estás intentando resolver hoy. Esa es la verdadera simbiosis cognitiva.</p>
+                        <p>La IA no es solo software; es un exoesqueleto para la mente humana.</p>
+                        <h4>De Creador a Curador</h4>
+                        <p>El nuevo cuello de botella es la visión y la capacidad de discernimiento.</p>
+                        <h4>Segundo Cerebro</h4>
+                        <p>Externaliza tus notas y aprendizajes en una bóveda digital interconectada.</p>
                     ` 
                 }
             ].filter(a => cat === 'general' ? true : a.category === cat);
