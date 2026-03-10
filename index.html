@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapiens | Guías, Consejos e IA</title>
+    <!-- Tailwind para un diseño moderno y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #fdfcfb; }
+        h1, h2, h3, .serif { font-family: 'Libre+Baskerville', serif; }
+
+        .ad-slot {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            color: #94a3b8;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: skeleton-load 1.5s infinite;
+        }
+
+        @keyframes skeleton-load {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+
+        /* Sparkle effect for IA buttons */
+        .sparkle-button {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sparkle-button::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s;
+        }
+        
+        .sparkle-button:hover::after {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Barra de Navegación -->
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showSection('home')">
+                    <span class="text-2xl font-bold tracking-tighter text-teal-700 serif">Sapiens<span class="text-orange-500">.</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider text-slate-500">
+                    <a href="#" onclick="loadCategory('general')" class="hover:text-teal-700 transition">Inicio</a>
+                    <a href="#" onclick="loadCategory('health')" class="hover:text-teal-700 transition">Salud</a>
+                    <a href="#" onclick="loadCategory('business')" class="hover:text-teal-700 transition">Finanzas</a>
+                    <a href="#" onclick="loadCategory('technology')" class="hover:text-teal-700 transition">Tecnología</a>
+                    <a href="#" onclick="showSection('legal')" class="hover:text-teal-700 transition">Legal</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="showSection('contacto')" class="bg-teal-700 text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-teal-800 transition">Contacto</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- AdSense Banner Top -->
+        <div class="ad-slot">Publicidad - Banner Horizontal Recomendado</div>
+
+        <!-- SECCIÓN: FEED DE NOTICIAS/CONSEJOS -->
+        <div id="section-home" class="page-section">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Columna de Artículos -->
+                <div class="lg:col-span-8">
+                    <h2 id="category-name" class="text-3xl font-bold mb-8 text-slate-900 serif">Lo último en Consejos</h2>
+                    
+                    <div id="news-grid" class="space-y-10">
+                        <!-- Esqueleto de carga inicial -->
+                        <div class="skeleton h-64 rounded-2xl w-full"></div>
+                        <div class="skeleton h-48 rounded-2xl w-full"></div>
+                    </div>
+
+                    <!-- AdSense In-Feed -->
+                    <div class="ad-slot">Publicidad - Anuncio entre contenido</div>
+                </div>
+
+                <!-- Barra Lateral -->
+                <aside class="lg:col-span-4 space-y-8">
+                    
+                    <!-- ✨ NUEVO: WIDGET DE GEMINI IA -->
+                    <div class="bg-gradient-to-br from-teal-50 to-white p-6 rounded-2xl border border-teal-100 shadow-sm ring-1 ring-teal-500/10">
+                        <h3 class="font-bold text-lg mb-4 text-teal-900 serif flex items-center">
+                            ✨ Consultorio Sapiens IA
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-4">¿Necesitas un consejo específico? Pregúntale a nuestra inteligencia artificial.</p>
+                        <textarea id="ai-query" placeholder="Ej: ¿Cómo ahorrar siendo estudiante?" class="w-full text-sm border border-teal-200 rounded-xl p-3 h-24 focus:ring-2 focus:ring-teal-500 outline-none mb-3"></textarea>
+                        <button onclick="generateAICounsel()" id="ai-btn" class="w-full sparkle-button text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center space-x-2">
+                            <span>✨ Generar Consejo</span>
+                        </button>
+                        <div id="ai-response" class="hidden mt-4 text-sm text-slate-700 bg-white p-4 rounded-xl border border-teal-50 italic leading-relaxed"></div>
+                    </div>
+
+                    <!-- Widget de Autor -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <h3 class="font-bold text-lg mb-4 text-teal-800 serif">Sobre el Portal</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed italic">"Nuestra misión es filtrar el ruido de internet para ofrecerte guías prácticas y consejos basados en datos para mejorar tu calidad de vida."</p>
+                    </div>
+
+                    <!-- AdSense Sidebar -->
+                    <div class="ad-slot h-80">Publicidad - Anuncio Vertical</div>
+
+                </aside>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: CONTACTO -->
+        <div id="section-contacto" class="page-section hidden">
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+                <h2 class="text-3xl font-bold mb-6 text-center serif">Hablemos</h2>
+                <p class="text-center text-slate-500 mb-8">¿Deseas colaborar o sugerir un tema? Completa el formulario.</p>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="Nombre" class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
+                        <input type="email" placeholder="Email" class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
+                    </div>
+                    <textarea placeholder="¿En qué podemos ayudarte?" class="w-full border border-slate-200 p-3 rounded-xl h-32 outline-none focus:border-teal-500"></textarea>
+                    <button class="w-full bg-teal-700 text-white font-bold py-4 rounded-xl hover:bg-teal-800 transition">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SECCIÓN: LEGAL -->
+        <div id="section-legal" class="page-section hidden">
+            <div class="max-w-3xl mx-auto bg-white p-10 rounded-3xl border border-slate-100 shadow-sm prose prose-slate">
+                <h2 class="text-3xl font-bold mb-6 serif">Aviso Legal y Privacidad</h2>
+                <p>Este sitio web cumple con las directrices de Google AdSense y las leyes internacionales de protección de datos.</p>
+                
+                <h3 class="font-bold text-lg mt-6 mb-2">Uso de Cookies</h3>
+                <p class="text-sm text-slate-600 mb-4">Utilizamos cookies para personalizar el contenido y los anuncios. Google AdSense utiliza cookies de terceros para mostrar anuncios basados en sus visitas previas a este sitio u otros sitios web.</p>
+                
+                <h3 class="font-bold text-lg mt-6 mb-2">Responsabilidad de la IA</h3>
+                <p class="text-sm text-slate-600">Las funciones marcadas con ✨ utilizan tecnología de Inteligencia Artificial. Los consejos generados son sugerencias generales y no sustituyen el consejo profesional.</p>
+                
+                <div class="mt-10 p-4 bg-teal-50 rounded-lg text-teal-800 text-xs">
+                    Última actualización: Marzo 2024
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal de Resumen IA -->
+    <div id="ia-modal" class="fixed inset-0 bg-black/50 hidden z-[60] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative">
+            <button onclick="closeIAModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h3 class="text-2xl font-bold mb-4 serif text-teal-800 flex items-center">
+                ✨ Resumen Inteligente
+            </h3>
+            <div id="ia-modal-content" class="text-slate-700 text-sm leading-relaxed space-y-4">
+                <!-- Content via API -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 mt-20 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <span class="text-xl font-bold text-teal-700 serif">Sapiens<span class="text-orange-500">.</span></span>
+            <div class="flex justify-center space-x-6 my-6 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <a href="#" onclick="showSection('home')" class="hover:text-teal-700">Inicio</a>
+                <a href="#" onclick="showSection('legal')" class="hover:text-teal-700">Privacidad</a>
+                <a href="#" onclick="showSection('contacto')" class="hover:text-teal-700">Contacto</a>
+            </div>
+            <p class="text-slate-400 text-[10px]">&copy; 2024 Portal de Consejos Sapiens. Contenido dinámico via RSS/API & Gemini IA.</p>
+        </div>
+    </footer>
+
+    <script>
+        // CONFIGURACIÓN API
+        const API_KEY = ''; // GNEWS API Key (Opcional)
+        const GEMINI_API_KEY = ""; // Entorno gestionado (vía runtime)
+
+        // Funciòn genérica para llamar a Gemini con Reintentos
+        async function callGemini(prompt, systemInstruction = "Eres un asistente experto en consejos prácticos y bienestar.") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] }
+            };
+
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error('API Error');
+                    const result = await response.json();
+                    return result.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    if (i === 4) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        // FUNCIÓN: Generar consejo personalizado en el Sidebar
+        async function generateAICounsel() {
+            const query = document.getElementById('ai-query').value.trim();
+            const btn = document.getElementById('ai-btn');
+            const responseDiv = document.getElementById('ai-response');
+
+            if (!query) return;
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> Pensando...</span>';
+            responseDiv.classList.add('hidden');
+
+            try {
+                const prompt = `Da un consejo práctico, breve y motivador sobre: "${query}". Responde en español, máximo 3 frases.`;
+                const advice = await callGemini(prompt, "Eres un mentor sabio del portal Sapiens.");
+                
+                responseDiv.innerText = advice;
+                responseDiv.classList.remove('hidden');
+            } catch (error) {
+                responseDiv.innerText = "Lo siento, la IA está descansando. Inténtalo de nuevo más tarde.";
+                responseDiv.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>✨ Generar Consejo</span>';
+            }
+        }
+
+        // FUNCIÓN: Resumir Noticia
+        async function summarizeArticle(title, description) {
+            const modal = document.getElementById('ia-modal');
+            const content = document.getElementById('ia-modal-content');
+            
+            modal.classList.remove('hidden');
+            content.innerHTML = '<div class="flex flex-col items-center py-8"><i class="fas fa-circle-notch fa-spin text-3xl text-teal-600 mb-4"></i><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Analizando con IA...</p></div>';
+
+            try {
+                const prompt = `Resume esta noticia y extrae 3 consejos prácticos basados en ella. Noticia: "${title}. ${description}". Responde en español con un resumen corto y una lista de 3 puntos.`;
+                const summary = await callGemini(prompt, "Eres un analista experto que resume noticias para lectores ocupados.");
+                
+                // Formateo básico de la respuesta (Gemini suele devolver Markdown)
+                const formattedSummary = summary.replace(/\n/g, '<br>');
+                content.innerHTML = `<div class="prose prose-sm text-slate-600">${formattedSummary}</div>`;
+            } catch (error) {
+                content.innerHTML = '<p class="text-red-500">Error al conectar con el servicio de IA. Por favor, revisa tu conexión.</p>';
+            }
+        }
+
+        function closeIAModal() {
+            document.getElementById('ia-modal').classList.add('hidden');
+        }
+
+        // LÓGICA DE NOTICIAS (GNEWS + MOCKS)
+        async function fetchArticles(category = 'general') {
+            const grid = document.getElementById('news-grid');
+            const catName = document.getElementById('category-name');
+            
+            catName.innerText = `Lo último en ${category === 'general' ? 'Tendencias' : getCategoryTitle(category)}`;
+            grid.innerHTML = '<div class="skeleton h-64 rounded-2xl w-full"></div><div class="skeleton h-48 rounded-2xl w-full"></div>';
+
+            try {
+                let articles;
+                if (!API_KEY || API_KEY === 'TU_API_KEY_AQUI') {
+                    articles = getMockArticles(category);
+                } else {
+                    const response = await fetch(`https://gnews.io/api/v4/top-headlines?category=${category}&lang=es&country=es&max=8&apikey=${API_KEY}`);
+                    const data = await response.json();
+                    articles = data.articles;
+                }
+                renderArticles(articles);
+            } catch (error) {
+                renderArticles(getMockArticles(category));
+            }
+        }
+
+        function renderArticles(articles) {
+            const grid = document.getElementById('news-grid');
+            grid.innerHTML = '';
+
+            articles.forEach((art, index) => {
+                const card = `
+                    <article class="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="md:flex">
+                            <div class="md:flex-shrink-0 relative overflow-hidden">
+                                ${art.image ? `<img class="h-48 w-full object-cover md:w-56 group-hover:scale-105 transition-transform duration-500" src="${art.image}" alt="Imagen noticia">` : `<div class="h-48 w-full md:w-56 bg-slate-100 flex items-center justify-center text-slate-300 italic text-xs">Sin imagen</div>`}
+                            </div>
+                            <div class="p-8 flex-1">
+                                <div class="flex justify-between items-start">
+                                    <div class="uppercase tracking-wide text-xs text-teal-600 font-bold mb-1">${art.source.name || 'Sapiens'}</div>
+                                    <button onclick="summarizeArticle('${art.title.replace(/'/g, "\\'")}', '${art.description.replace(/'/g, "\\'")}')" class="text-[10px] bg-teal-50 text-teal-700 px-2 py-1 rounded-md font-bold flex items-center space-x-1 hover:bg-teal-100 transition">
+                                        <span>✨ Resumir</span>
+                                    </button>
+                                </div>
+                                <a href="${art.url}" target="_blank" class="block mt-1 text-xl leading-tight font-bold text-slate-900 serif hover:text-teal-700 transition">${art.title}</a>
+                                <p class="mt-3 text-slate-500 text-sm line-clamp-3 leading-relaxed">${art.description}</p>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <div class="flex items-center text-[10px] text-slate-400 font-bold space-x-2">
+                                        <span>${new Date(art.publishedAt || Date.now()).toLocaleDateString()}</span>
+                                        <span>•</span>
+                                        <span>3 min lectura</span>
+                                    </div>
+                                    <a href="${art.url}" target="_blank" class="text-teal-600 font-bold text-xs hover:underline">Leer más →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('section-' + id).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadCategory(cat) {
+            showSection('home');
+            fetchArticles(cat);
+        }
+
+        function getCategoryTitle(cat) {
+            const map = { 'health': 'Salud y Bienestar', 'business': 'Finanzas y Ahorro', 'technology': 'Tecnología Útil' };
+            return map[cat] || cat;
+        }
+
+        function getMockArticles(cat) {
+            // Datos de respaldo con contenido más variado para testing
+            const mocks = [
+                {
+                    title: `El secreto japonés para una vida larga y saludable`,
+                    description: "No se trata de dietas extremas, sino de un concepto llamado 'Ikigai'. Exploramos cómo el propósito de vida influye directamente en tu longevidad y bienestar diario.",
+                    source: { name: "Bienestar" },
+                    url: "#",
+                    image: null
+                },
+                {
+                    title: "Cómo organizar tus finanzas en menos de 20 minutos a la semana",
+                    description: "El sistema de los tres cubos te permite automatizar tus ahorros e inversiones sin sacrificar tu estilo de vida actual. Una guía para perezosos inteligentes.",
+                    source: { name: "Economía" },
+                    url: "#",
+                    image: null
+                },
+                {
+                    title: "La inteligencia artificial en el hogar: ¿Realidad o moda?",
+                    description: "Analizamos los dispositivos que realmente ahorran tiempo y energía frente a los gadgets que solo terminan acumulando polvo en un cajón.",
+                    source: { name: "Hogar Tech" },
+                    url: "#",
+                    image: null
+                }
+            ];
+            return mocks;
+        }
+
+        // Carga inicial
+        window.onload = () => fetchArticles('general');
+    </script>
+</body>
+</html>
