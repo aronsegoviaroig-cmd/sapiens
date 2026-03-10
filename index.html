@@ -4,414 +4,485 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Básico -->
-    <title>Sapiens | Guías, Consejos e Inteligencia Artificial aplicada</title>
-    <meta name="description" content="Sapiens es tu portal de referencia para consejos prácticos sobre salud, finanzas y tecnología, optimizados con inteligencia artificial.">
-    <meta name="keywords" content="consejos, salud, finanzas, tecnología, inteligencia artificial, guías prácticas, bienestar">
-    <meta name="author" content="Sapiens Portal">
-    <link rel="canonical" href="https://tu-dominio.com/">
-
-    <!-- Open Graph (Para que se vea bien al compartir en redes sociales) -->
-    <meta property="og:title" content="Sapiens | Guías, Consejos e IA">
-    <meta property="og:description" content="Filtramos el ruido de internet para ofrecerte lo mejor en bienestar y tecnología.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=600">
-    <meta property="og:url" content="https://tu-dominio.com/">
-    <meta property="og:type" content="website">
-
-    <!-- Tailwind para un diseño moderno y rápido -->
+    <title>Sapiens | Inteligencia Colectiva y Artificial</title>
+    <meta name="description" content="Portal de sabiduría potenciado por IA y colaboración humana.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
         
-        body { font-family: 'Inter', sans-serif; background-color: #fdfcfb; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
         h1, h2, h3, .serif { font-family: 'Libre+Baskerville', serif; }
 
-        .ad-slot {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100px;
-            color: #94a3b8;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin: 1.5rem 0;
-            border-radius: 8px;
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #334155; font-size: 1.1rem; }
+        .article-content h4 { font-weight: 700; color: #0d9488; margin-top: 2.5rem; margin-bottom: 1.25rem; font-size: 1.5rem; font-family: 'Libre+Baskerville', serif; }
+        
+        .ai-gradient {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
         }
 
-        .skeleton {
+        .ai-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(13, 148, 136, 0.1);
+        }
+
+        .loading-shimmer {
             background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
             background-size: 200% 100%;
-            animation: skeleton-load 1.5s infinite;
+            animation: shimmer 1.5s infinite;
         }
 
-        @keyframes skeleton-load {
+        @keyframes shimmer {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
 
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;  
-            overflow: hidden;
-        }
-
-        /* Sparkle effect for IA buttons */
-        .sparkle-button {
-            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sparkle-button::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.5s;
-        }
-        
-        .sparkle-button:hover::after {
-            transform: scale(1);
-        }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="text-slate-800">
+<body>
 
-    <!-- Barra de Navegación -->
-    <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
+    <!-- Navegación -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
+            <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="loadCategory('general')">
-                    <span class="text-2xl font-bold tracking-tighter text-teal-700 serif">Sapiens<span class="text-orange-500">.</span></span>
+                    <span class="text-3xl font-bold tracking-tighter text-teal-700 serif">Sapiens<span class="text-orange-500">.</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider text-slate-500">
-                    <a href="#" onclick="loadCategory('general')" class="hover:text-teal-700 transition">Inicio</a>
-                    <a href="#" onclick="loadCategory('health')" class="hover:text-teal-700 transition">Salud</a>
-                    <a href="#" onclick="loadCategory('business')" class="hover:text-teal-700 transition">Finanzas</a>
-                    <a href="#" onclick="loadCategory('technology')" class="hover:text-teal-700 transition">Tecnología</a>
-                    <a href="#" onclick="showSection('legal')" class="hover:text-teal-700 transition">Legal</a>
+                <div class="hidden md:flex space-x-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
+                    <a href="#" onclick="loadCategory('general')" class="hover:text-teal-700 transition-colors">Inicio</a>
+                    <a href="#" onclick="loadCategory('health')" class="hover:text-teal-700 transition-colors">Salud</a>
+                    <a href="#" onclick="loadCategory('business')" class="hover:text-teal-700 transition-colors">Finanzas</a>
+                    <a href="#" onclick="loadCategory('technology')" class="hover:text-teal-700 transition-colors">Tecnología</a>
+                    <a href="#" onclick="showSection('publicar')" class="text-orange-500 hover:text-orange-600 transition-colors flex items-center">
+                        <i class="fas fa-pen-nib mr-2"></i> Publicar
+                    </a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button onclick="showSection('contacto')" class="bg-teal-700 text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-teal-800 transition">Contacto</button>
+                <div>
+                    <button onclick="showSection('contacto')" class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-teal-800 transition shadow-lg">Suscribirse</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Contenido Principal -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Contenido -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         
-        <!-- AdSense Banner Top -->
-        <div class="ad-slot">Publicidad - Banner Horizontal Recomendado</div>
-
-        <!-- SECCIÓN: FEED DE NOTICIAS/CONSEJOS -->
-        <div id="section-home" class="page-section">
+        <!-- SECCIÓN: FEED -->
+        <div id="section-home" class="page-section fade-in">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                
                 <!-- Columna de Artículos -->
                 <div class="lg:col-span-8">
-                    <h1 class="hidden">Sapiens - Portal de Consejos y Guías con IA</h1>
-                    <h2 id="category-name" class="text-3xl font-bold mb-8 text-slate-900 serif border-b-2 border-teal-600 pb-2 inline-block">Lo último en Consejos</h2>
-                    
-                    <div id="news-grid" class="space-y-10">
-                        <!-- Contenido dinámico aquí -->
+                    <div class="flex items-center justify-between mb-10 border-b border-slate-200 pb-4">
+                        <h2 id="category-name" class="text-4xl font-bold text-slate-900 serif">Explora la Sabiduría</h2>
+                        <span id="article-count" class="text-xs font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full uppercase">Cargando...</span>
                     </div>
-
-                    <!-- AdSense In-Feed -->
-                    <div class="ad-slot">Publicidad - Anuncio entre contenido</div>
+                    <div id="news-grid" class="space-y-16"></div>
                 </div>
 
-                <!-- Barra Lateral -->
+                <!-- Barra Lateral IA MEJORADA -->
                 <aside class="lg:col-span-4 space-y-8">
-                    
-                    <!-- ✨ WIDGET DE GEMINI IA -->
-                    <div class="bg-gradient-to-br from-teal-50 to-white p-6 rounded-2xl border border-teal-100 shadow-sm ring-1 ring-teal-500/10">
-                        <h3 class="font-bold text-lg mb-4 text-teal-900 serif flex items-center">
-                            ✨ Consultorio Sapiens IA
-                        </h3>
-                        <p class="text-xs text-slate-500 mb-4">¿Necesitas un consejo específico? Pregúntale a nuestra inteligencia artificial.</p>
-                        <textarea id="ai-query" placeholder="Ej: ¿Cómo ahorrar siendo estudiante?" class="w-full text-sm border border-teal-200 rounded-xl p-3 h-24 focus:ring-2 focus:ring-teal-500 outline-none mb-3"></textarea>
-                        <button onclick="generateAICounsel()" id="ai-btn" class="w-full sparkle-button text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center space-x-2">
-                            <span>✨ Generar Consejo</span>
+                    <div class="ai-card p-8 rounded-[2.5rem] shadow-2xl border-t-4 border-teal-500 sticky top-28">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-bold text-xl text-slate-900 serif">Oráculo IA</h3>
+                            <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">v2.5 Enhanced</span>
+                        </div>
+                        
+                        <!-- Controles de IA -->
+                        <div class="flex gap-2 mb-4">
+                            <button onclick="setAIMode('practical')" id="mode-practical" class="ai-mode-btn flex-1 py-2 text-[10px] font-bold rounded-xl bg-teal-600 text-white transition-all">PRÁCTICO</button>
+                            <button onclick="setAIMode('philosophical')" id="mode-philosophical" class="ai-mode-btn flex-1 py-2 text-[10px] font-bold bg-slate-100 text-slate-500 rounded-xl hover:bg-slate-200 transition-all">FILOSÓFICO</button>
+                            <button onclick="setAIMode('critical')" id="mode-critical" class="ai-mode-btn flex-1 py-2 text-[10px] font-bold bg-slate-100 text-slate-500 rounded-xl hover:bg-slate-200 transition-all">CRÍTICO</button>
+                        </div>
+
+                        <textarea id="ai-query" placeholder="¿En qué puedo ayudarte hoy?" class="w-full text-sm border-none bg-slate-50 rounded-2xl p-4 h-28 focus:ring-2 focus:ring-teal-500 outline-none mb-4 transition-all resize-none"></textarea>
+                        
+                        <button onclick="generateAICounsel()" id="ai-btn" class="w-full ai-gradient text-white py-4 rounded-2xl font-bold text-sm shadow-xl hover:shadow-teal-200 hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-3">
+                            <i class="fas fa-magic"></i>
+                            <span>Consultar al Oráculo</span>
                         </button>
-                        <div id="ai-response" class="hidden mt-4 text-sm text-slate-700 bg-white p-4 rounded-xl border border-teal-50 italic leading-relaxed"></div>
+
+                        <!-- Contenedor de Respuesta IA -->
+                        <div id="ai-loading" class="hidden mt-6 space-y-4">
+                            <div class="h-4 w-3/4 loading-shimmer rounded"></div>
+                            <div class="h-4 w-full loading-shimmer rounded"></div>
+                            <div class="h-4 w-1/2 loading-shimmer rounded"></div>
+                        </div>
+
+                        <div id="ai-response-container" class="hidden mt-6 animate-fade-in">
+                            <div id="ai-image-container" class="mb-4 rounded-2xl overflow-hidden h-40 bg-slate-100 hidden">
+                                <img id="ai-generated-img" class="w-full h-full object-cover" src="" alt="Representación visual">
+                            </div>
+                            <div id="ai-response-text" class="text-sm text-slate-700 bg-white p-5 rounded-2xl border border-teal-50 italic leading-relaxed shadow-inner"></div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <button onclick="saveCounsel()" class="text-[10px] font-bold text-teal-600 hover:text-teal-800 uppercase tracking-widest"><i class="far fa-bookmark mr-1"></i> Guardar</button>
+                                <button onclick="clearAI()" class="text-[10px] font-bold text-slate-400 hover:text-red-400 uppercase tracking-widest">Limpiar</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Widget de Autor -->
-                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <h3 class="font-bold text-lg mb-4 text-teal-800 serif">Sobre el Portal</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed italic">"Nuestra misión es filtrar el ruido de internet para ofrecerte guías prácticas y consejos basados en datos para mejorar tu calidad de vida."</p>
+                    <!-- Bitácora de Sabiduría (Historial local) -->
+                    <div id="ai-history" class="hidden bg-slate-900 rounded-[2rem] p-6 text-white overflow-hidden relative">
+                        <div class="relative z-10">
+                            <h4 class="text-xs font-bold text-teal-400 uppercase tracking-[0.2em] mb-4">Bitácora Reciente</h4>
+                            <div id="history-list" class="space-y-3 max-h-48 overflow-y-auto pr-2 custom-scrollbar"></div>
+                        </div>
                     </div>
-
-                    <!-- AdSense Sidebar -->
-                    <div class="ad-slot h-80">Publicidad - Anuncio Vertical</div>
-
                 </aside>
             </div>
         </div>
 
-        <!-- SECCIÓN: CONTACTO -->
-        <div id="section-contacto" class="page-section hidden">
-            <div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
-                <h2 class="text-3xl font-bold mb-6 text-center serif">Hablemos</h2>
-                <p class="text-center text-slate-500 mb-8">¿Deseas colaborar o sugerir un tema? Completa el formulario.</p>
-                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Mensaje enviado con éxito'); showSection('home');">
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="Nombre" required class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
-                        <input type="email" placeholder="Email" required class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
+        <!-- OTRAS SECCIONES (IGUALES AL ANTERIOR) -->
+        <div id="section-publicar" class="page-section hidden fade-in">
+             <div class="max-w-3xl mx-auto bg-white p-10 md:p-16 rounded-[3rem] border border-slate-100 shadow-2xl">
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold uppercase text-[10px] tracking-[0.3em]">Colaboración Abierta</span>
+                    <h2 class="text-5xl font-bold serif mt-3 text-slate-900">Tu voz importa</h2>
+                </div>
+                <form id="form-publicar" class="space-y-8" onsubmit="handlePublish(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <input type="text" id="pub-title" required placeholder="Título" class="w-full border-b-2 border-slate-100 p-3 outline-none focus:border-teal-500 bg-transparent">
+                        <select id="pub-cat" class="w-full border-b-2 border-slate-100 p-3 outline-none focus:border-teal-500 bg-transparent">
+                            <option value="general">Sabiduría General</option>
+                            <option value="health">Salud</option>
+                            <option value="business">Finanzas</option>
+                            <option value="technology">Tecnología</option>
+                        </select>
                     </div>
-                    <textarea placeholder="¿En qué podemos ayudarte?" required class="w-full border border-slate-200 p-3 rounded-xl h-32 outline-none focus:border-teal-500"></textarea>
-                    <button class="w-full bg-teal-700 text-white font-bold py-4 rounded-xl hover:bg-teal-800 transition">Enviar Mensaje</button>
+                    <input type="text" id="pub-author" required placeholder="Tu Nombre" class="w-full border-b-2 border-slate-100 p-3 outline-none focus:border-teal-500 bg-transparent">
+                    <textarea id="pub-text" required placeholder="Escribe aquí..." class="w-full border border-slate-100 bg-slate-50 p-6 rounded-3xl h-64 outline-none focus:border-teal-500"></textarea>
+                    <button type="submit" class="w-full ai-gradient text-white font-bold py-5 rounded-3xl shadow-xl">Publicar Conocimiento</button>
                 </form>
             </div>
         </div>
 
-        <!-- SECCIÓN: LEGAL -->
-        <div id="section-legal" class="page-section hidden">
-            <div class="max-w-3xl mx-auto bg-white p-10 rounded-3xl border border-slate-100 shadow-sm prose prose-slate">
-                <h2 class="text-3xl font-bold mb-6 serif">Aviso Legal y Privacidad</h2>
-                <p>Este sitio web cumple con las directrices de Google AdSense y las leyes internacionales de protección de datos.</p>
-                
-                <h3 class="font-bold text-lg mt-6 mb-2">Uso de Cookies</h3>
-                <p class="text-sm text-slate-600 mb-4">Utilizamos cookies para personalizar el contenido y los anuncios. Google AdSense utiliza cookies de terceros para mostrar anuncios basados en sus visitas previas a este sitio u otros sitios web.</p>
-                
-                <h3 class="font-bold text-lg mt-6 mb-2">Responsabilidad de la IA</h3>
-                <p class="text-sm text-slate-600">Las funciones marcadas con ✨ utilizan tecnología de Inteligencia Artificial. Los consejos generados son sugerencias generales y no sustituyen el consejo profesional.</p>
-                
-                <div class="mt-10 p-4 bg-teal-50 rounded-lg text-teal-800 text-xs">
-                    Última actualización: Marzo 2024
-                </div>
-            </div>
+        <div id="section-article" class="page-section hidden fade-in">
+            <div class="max-w-4xl mx-auto" id="full-article-content"></div>
         </div>
 
     </main>
 
-    <!-- Modal de Resumen IA -->
-    <div id="ia-modal" class="fixed inset-0 bg-black/50 hidden z-[60] flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative">
-            <button onclick="closeIAModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 serif text-teal-800 flex items-center">
-                ✨ Resumen Inteligente
-            </h3>
-            <div id="ia-modal-content" class="text-slate-700 text-sm leading-relaxed space-y-4">
-                <!-- Content via API -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 mt-20 py-12">
+    <footer class="bg-slate-900 text-white mt-32 py-20">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <span class="text-xl font-bold text-teal-700 serif cursor-pointer" onclick="loadCategory('general')">Sapiens<span class="text-orange-500">.</span></span>
-            <div class="flex justify-center space-x-6 my-6 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                <a href="#" onclick="loadCategory('general')" class="hover:text-teal-700">Inicio</a>
-                <a href="#" onclick="showSection('legal')" class="hover:text-teal-700">Privacidad</a>
-                <a href="#" onclick="showSection('contacto')" class="hover:text-teal-700">Contacto</a>
-            </div>
-            <p class="text-slate-400 text-[10px]">&copy; 2024 Portal de Consejos Sapiens. Contenido dinámico via RSS/API & Gemini IA.</p>
+            <span class="text-3xl font-bold serif text-teal-400">Sapiens<span class="text-orange-500">.</span></span>
+            <p class="text-slate-500 mt-4 text-sm">© 2026 Inteligencia Aplicada para la Vida Moderna.</p>
         </div>
     </footer>
 
     <script>
-        // CONFIGURACIÓN API
-        const API_KEY = ''; // GNEWS API Key (Opcional)
-        const GEMINI_API_KEY = ""; // Entorno gestionado (vía runtime)
+        const API_KEY = ""; 
+        let currentArticles = [];
+        let userArticles = [];
+        let aiMode = 'practical';
+        let lastResponse = "";
 
-        // Funciòn genérica para llamar a Gemini con Reintentos
-        async function callGemini(prompt, systemInstruction = "Eres un asistente experto en consejos prácticos y bienestar.") {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: systemInstruction }] }
+        // --- MOTOR IA MEJORADO ---
+
+        async function callGemini(prompt, systemInstruction) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`;
+            const payload = { 
+                contents: [{ parts: [{ text: prompt }] }], 
+                systemInstruction: { parts: [{ text: systemInstruction }] } 
             };
-
-            let delay = 1000;
-            for (let i = 0; i < 5; i++) {
+            
+            let retries = 0;
+            const maxRetries = 3;
+            
+            while(retries < maxRetries) {
                 try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!response.ok) throw new Error('API Error');
+                    const response = await fetch(url, { method: 'POST', body: JSON.stringify(payload) });
                     const result = await response.json();
                     return result.candidates?.[0]?.content?.parts?.[0]?.text;
-                } catch (error) {
-                    if (i === 4) throw error;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    delay *= 2;
+                } catch (e) {
+                    retries++;
+                    await new Promise(r => setTimeout(r, 1000 * retries));
                 }
             }
+            return "El oráculo está meditando. Por favor, intenta de nuevo en un momento.";
         }
 
-        // FUNCIÓN: Generar consejo personalizado en el Sidebar
+        async function generateImage(prompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${API_KEY}`;
+            const payload = { instances: { prompt: `A sophisticated, minimalist artistic illustration for: ${prompt}. Cinematic lighting, soft teal and amber tones, high quality, editorial style.` }, parameters: { sampleCount: 1 } };
+            
+            try {
+                const response = await fetch(url, { method: 'POST', body: JSON.stringify(payload) });
+                const result = await response.json();
+                return `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+            } catch (e) { return null; }
+        }
+
+        function setAIMode(mode) {
+            aiMode = mode;
+            document.querySelectorAll('.ai-mode-btn').forEach(b => {
+                b.classList.remove('bg-teal-600', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-500');
+            });
+            const activeBtn = document.getElementById(`mode-${mode}`);
+            activeBtn.classList.remove('bg-slate-100', 'text-slate-500');
+            activeBtn.classList.add('bg-teal-600', 'text-white');
+        }
+
         async function generateAICounsel() {
             const query = document.getElementById('ai-query').value.trim();
-            const btn = document.getElementById('ai-btn');
-            const responseDiv = document.getElementById('ai-response');
-
             if (!query) return;
 
+            const loading = document.getElementById('ai-loading');
+            const container = document.getElementById('ai-response-container');
+            const textDiv = document.getElementById('ai-response-text');
+            const imgContainer = document.getElementById('ai-image-container');
+            const imgEl = document.getElementById('ai-generated-img');
+            const btn = document.getElementById('ai-btn');
+
+            loading.classList.remove('hidden');
+            container.classList.add('hidden');
             btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span> Pensando...</span>';
-            responseDiv.classList.add('hidden');
 
-            try {
-                const prompt = `Da un consejo práctico, breve y motivador sobre: "${query}". Responde en español, máximo 3 frases.`;
-                const advice = await callGemini(prompt, "Eres un mentor sabio del portal Sapiens.");
-                
-                responseDiv.innerText = advice;
-                responseDiv.classList.remove('hidden');
-            } catch (error) {
-                responseDiv.innerText = "Lo siento, la IA está descansando. Inténtalo de nuevo más tarde.";
-                responseDiv.classList.remove('hidden');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<span>✨ Generar Consejo</span>';
-            }
-        }
+            const instructions = {
+                practical: "Eres un mentor pragmático. Da consejos directos, accionables y con pasos numerados.",
+                philosophical: "Eres un sabio estoico. Responde con metáforas, profundidad existencial y calma.",
+                critical: "Eres un consultor escéptico. Analiza los riesgos, los puntos débiles y da una opinión honesta aunque sea dura."
+            };
 
-        // FUNCIÓN: Resumir Noticia
-        async function summarizeArticle(title, description) {
-            const modal = document.getElementById('ia-modal');
-            const content = document.getElementById('ia-modal-content');
+            // Llamadas paralelas para optimizar tiempo
+            const [advice, imageUrl] = await Promise.all([
+                callGemini(query, instructions[aiMode]),
+                generateImage(query)
+            ]);
+
+            lastResponse = advice;
+            textDiv.innerHTML = advice.replace(/\n/g, '<br>');
             
-            modal.classList.remove('hidden');
-            content.innerHTML = '<div class="flex flex-col items-center py-8"><i class="fas fa-circle-notch fa-spin text-3xl text-teal-600 mb-4"></i><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Analizando con IA...</p></div>';
-
-            try {
-                const prompt = `Resume esta noticia y extrae 3 consejos prácticos basados en ella. Noticia: "${title}. ${description}". Responde en español con un resumen corto y una lista de 3 puntos.`;
-                const summary = await callGemini(prompt, "Eres un analista experto que resume noticias para lectores ocupados.");
-                
-                const formattedSummary = summary.replace(/\n/g, '<br>');
-                content.innerHTML = `<div class="prose prose-sm text-slate-600">${formattedSummary}</div>`;
-            } catch (error) {
-                content.innerHTML = '<p class="text-red-500">Error al conectar con el servicio de IA. Por favor, revisa tu conexión.</p>';
+            if (imageUrl) {
+                imgEl.src = imageUrl;
+                imgContainer.classList.remove('hidden');
+            } else {
+                imgContainer.classList.add('hidden');
             }
+
+            loading.classList.add('hidden');
+            container.classList.remove('hidden');
+            btn.disabled = false;
         }
 
-        function closeIAModal() {
-            document.getElementById('ia-modal').classList.add('hidden');
-        }
-
-        // LÓGICA DE NOTICIAS (GNEWS + MOCKS con Imágenes funcionales)
-        async function fetchArticles(category = 'general') {
-            const grid = document.getElementById('news-grid');
-            const catName = document.getElementById('category-name');
+        function saveCounsel() {
+            const query = document.getElementById('ai-query').value;
+            const historyList = document.getElementById('history-list');
+            const historySection = document.getElementById('ai-history');
             
-            catName.innerText = `Lo último en ${category === 'general' ? 'Tendencias' : getCategoryTitle(category)}`;
-            grid.innerHTML = '<div class="skeleton h-64 rounded-2xl w-full"></div><div class="skeleton h-48 rounded-2xl w-full"></div>';
+            historySection.classList.remove('hidden');
+            const item = document.createElement('div');
+            item.className = 'text-[11px] p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 cursor-pointer transition';
+            item.innerHTML = `<span class="text-teal-400 font-bold block mb-1">Q: ${query.substring(0, 30)}...</span> <span class="text-slate-400">${new Date().toLocaleTimeString()}</span>`;
+            item.onclick = () => {
+                document.getElementById('ai-query').value = query;
+                document.getElementById('ai-response-text').innerHTML = lastResponse.replace(/\n/g, '<br>');
+                document.getElementById('ai-response-container').classList.remove('hidden');
+            };
+            historyList.prepend(item);
+        }
 
-            try {
-                let articles;
-                if (!API_KEY || API_KEY === 'TU_API_KEY_AQUI') {
-                    // Carga simulada con delay para efecto visual
-                    setTimeout(() => {
-                        articles = getMockArticles(category);
-                        renderArticles(articles);
-                    }, 500);
-                } else {
-                    const response = await fetch(`https://gnews.io/api/v4/top-headlines?category=${category}&lang=es&country=es&max=8&apikey=${API_KEY}`);
-                    const data = await response.json();
-                    articles = data.articles;
-                    renderArticles(articles);
-                }
-            } catch (error) {
-                renderArticles(getMockArticles(category));
-            }
+        function clearAI() {
+            document.getElementById('ai-query').value = "";
+            document.getElementById('ai-response-container').classList.add('hidden');
+        }
+
+        // --- GESTIÓN DE CONTENIDO ---
+
+        function handlePublish(e) {
+            e.preventDefault();
+            const title = document.getElementById('pub-title').value;
+            const text = document.getElementById('pub-text').value;
+            const cat = document.getElementById('pub-cat').value;
+
+            const newArticle = {
+                title,
+                description: text.substring(0, 150) + "...",
+                source: { name: document.getElementById('pub-author').value },
+                image: `https://images.unsplash.com/photo-${Math.floor(Math.random()*1000000)}?auto=format&fit=crop&q=80&w=800`,
+                fullText: text.split('\n').map(p => `<p>${p}</p>`).join(''),
+                category: cat,
+                isUserPost: true
+            };
+
+            userArticles.unshift(newArticle);
+            loadCategory(cat);
         }
 
         function renderArticles(articles) {
+            currentArticles = articles;
             const grid = document.getElementById('news-grid');
+            document.getElementById('article-count').innerText = `${articles.length} RECURSOS`;
             grid.innerHTML = '';
 
-            articles.forEach((art, index) => {
-                const card = `
-                    <article class="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-shadow duration-300">
-                        <div class="md:flex">
-                            <div class="md:flex-shrink-0 relative overflow-hidden bg-slate-200">
-                                <img class="h-48 w-full object-cover md:w-56 group-hover:scale-105 transition-transform duration-500" 
-                                     src="${art.image || 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=400'}" 
-                                     alt="Imagen de artículo">
+            articles.forEach((art, i) => {
+                grid.innerHTML += `
+                    <article class="group md:flex items-center gap-10">
+                        <div class="md:w-5/12 overflow-hidden rounded-[2rem] aspect-[4/3] shadow-lg">
+                            <img class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" src="${art.image}">
+                        </div>
+                        <div class="md:w-7/12 py-4">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <span class="text-[9px] ${art.isUserPost ? 'bg-orange-100 text-orange-600' : 'bg-teal-50 text-teal-600'} font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                                    ${art.isUserPost ? 'Comunidad' : art.source.name}
+                                </span>
                             </div>
-                            <div class="p-8 flex-1">
-                                <div class="flex justify-between items-start">
-                                    <div class="uppercase tracking-wide text-xs text-teal-600 font-bold mb-1">${art.source.name || 'Sapiens'}</div>
-                                    <button onclick="summarizeArticle('${art.title.replace(/'/g, "\\'")}', '${art.description.replace(/'/g, "\\'")}')" class="text-[10px] bg-teal-50 text-teal-700 px-2 py-1 rounded-md font-bold flex items-center space-x-1 hover:bg-teal-100 transition">
-                                        <span>✨ Resumir</span>
-                                    </button>
-                                </div>
-                                <a href="${art.url}" target="_blank" class="block mt-1 text-xl leading-tight font-bold text-slate-900 serif hover:text-teal-700 transition">${art.title}</a>
-                                <p class="mt-3 text-slate-500 text-sm line-clamp-3 leading-relaxed">${art.description}</p>
-                                <div class="mt-4 flex items-center justify-between">
-                                    <div class="flex items-center text-[10px] text-slate-400 font-bold space-x-2">
-                                        <span>${new Date(art.publishedAt || Date.now()).toLocaleDateString()}</span>
-                                        <span>•</span>
-                                        <span>3 min lectura</span>
-                                    </div>
-                                    <a href="${art.url}" target="_blank" class="text-teal-600 font-bold text-xs hover:underline">Leer más →</a>
-                                </div>
-                            </div>
+                            <h3 class="text-3xl font-bold serif mb-4 text-slate-900 leading-snug">${art.title}</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2 mb-6">${art.description}</p>
+                            <button onclick="readMore(${i})" class="text-slate-900 font-bold text-xs border-b-2 border-orange-400 pb-1 hover:text-teal-700 hover:border-teal-700 transition-all uppercase tracking-widest">Ver Guía</button>
                         </div>
                     </article>
                 `;
-                grid.innerHTML += card;
             });
+        }
+
+        function readMore(index) {
+            const art = currentArticles[index];
+            const container = document.getElementById('full-article-content');
+            container.innerHTML = `
+                <button onclick="showSection('home')" class="mb-8 font-bold text-xs text-teal-600 uppercase tracking-widest flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </button>
+                <img src="${art.image}" class="w-full h-[450px] object-cover rounded-[3rem] shadow-2xl mb-12">
+                <h1 class="text-5xl font-bold serif mb-8 text-slate-900">${art.title}</h1>
+                <div class="article-content">${art.fullText}</div>
+            `;
+            showSection('article');
         }
 
         function showSection(id) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.add('hidden'));
             document.getElementById('section-' + id).classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function loadCategory(cat) {
-            showSection('home');
-            fetchArticles(cat);
-        }
-
-        function getCategoryTitle(cat) {
-            const map = { 'health': 'Salud y Bienestar', 'business': 'Finanzas y Ahorro', 'technology': 'Tecnología Útil' };
-            return map[cat] || cat;
         }
 
         function getMockArticles(cat) {
-            const imgSalud = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600";
-            const imgFinanzas = "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=600";
-            const imgTech = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600";
-            const imgGral = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=600";
-
-            const data = {
-                general: [
-                    { title: "El arte de vivir con propósito", description: "Descubre cómo pequeños cambios en tu rutina diaria pueden llevarte a una vida más plena y satisfactoria según expertos en psicología.", source: {name: "Editorial"}, image: imgGral, url: "#" },
-                    { title: "Cómo el café afecta tu productividad", description: "Analizamos los mejores momentos del día para consumir cafeína y maximizar tu enfoque sin afectar el sueño.", source: {name: "Hábitos"}, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600", url: "#" }
-                ],
-                health: [
-                    { title: "El secreto japonés para una vida larga", description: "El concepto de 'Ikigai' no es solo espiritual; tiene bases científicas que demuestran su impacto en la longevidad biológica.", source: {name: "Bienestar"}, image: imgSalud, url: "#" },
-                    { title: "5 Ejercicios de movilidad para oficina", description: "Si pasas más de 6 horas sentado, estos estiramientos de 2 minutos salvarán tu espalda y cuello a largo plazo.", source: {name: "Salud Física"}, image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=600", url: "#" }
-                ],
-                business: [
-                    { title: "Ahorra el 20% de tu sueldo sin esfuerzo", description: "La regla del 50-30-20 explicada paso a paso para personas que nunca han logrado mantener un presupuesto estable.", source: {name: "Economía"}, image: imgFinanzas, url: "#" },
-                    { title: "Inversiones seguras para principiantes", description: "Guía completa sobre fondos indexados y por qué son la mejor opción para construir riqueza a largo plazo en 2024.", source: {name: "Inversión"}, image: "https://images.unsplash.com/photo-1611974714024-4607a55d405c?auto=format&fit=crop&q=80&w=600", url: "#" }
-                ],
-                technology: [
-                    { title: "Gadgets que realmente ahorran energía", description: "Analizamos los dispositivos inteligentes que optimizan el consumo de luz y agua en el hogar, amortizándose en menos de un año.", source: {name: "Hogar Smart"}, image: imgTech, url: "#" },
-                    { title: "Cómo usar la IA para organizar tu agenda", description: "Herramientas gratuitas que utilizan modelos de lenguaje para gestionar tus reuniones y priorizar tus tareas automáticamente.", source: {name: "Tech Pro"}, image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600", url: "#" }
-                ]
-            };
-            return data[cat] || data.general;
+            const userMatch = userArticles.filter(a => cat === 'general' || a.category === cat);
+            const system = [
+                { 
+                    title: "El Arte de la Resiliencia: Filosofía Práctica para el Caos", 
+                    description: "Cómo convertir el obstáculo en el camino según Marco Aurelio. Una guía profunda para blindar tu mente ante la adversidad moderna.", 
+                    source: {name: "Filosofía Aplicada"}, 
+                    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800", 
+                    category: "general", 
+                    fullText: `
+                        <p>La resiliencia no es simplemente la capacidad de "aguantar" los golpes de la vida, sino la habilidad de utilizar esa misma adversidad como combustible para el crecimiento personal. Hace más de 2000 años, los filósofos estoicos desarrollaron un sistema operativo mental precisamente para esto, y hoy es más relevante que nunca.</p>
+                        
+                        <h4>La Dicotomía del Control</h4>
+                        <p>El pilar fundamental del estoicismo, articulado magistralmente por Epicteto, es la dicotomía del control. Su premisa es radicalmente simple: hay cosas que dependen de nosotros y cosas que no. Sufrimos cuando invertimos nuestra energía emocional en el segundo grupo.</p>
+                        <ul>
+                            <li><strong>Lo que controlas:</strong> Tus juicios, tus impulsos, tus deseos, tus aversiones. En resumen, tus propias acciones y reacciones mentales.</li>
+                            <li><strong>Lo que NO controlas:</strong> El clima, la economía, las opiniones de los demás, el tráfico, la genética, el pasado.</li>
+                        </ul>
+                        <p>Al redirigir toda nuestra ansiedad hacia nuestra esfera de control, experimentamos una liberación inmediata. El estrés es, en gran medida, la fricción entre la realidad inamovible y nuestra exigencia ilusoria de querer controlarla.</p>
+                        
+                        <h4>Amor Fati: Amar el Destino</h4>
+                        <p>Friedrich Nietzsche popularizó este concepto, aunque sus raíces son profundamente estoicas. <em>Amor Fati</em> no es resignación pasiva; es la aceptación entusiasta de todo lo que ocurre. Como decía el emperador romano Marco Aurelio: "El fuego brillante convierte en llama y resplandor todo lo que se le echa". Un obstáculo en el camino no bloquea el camino; se convierte en el camino.</p>
+                        
+                        <h4>Prácticas Diarias para Forjar Resiliencia</h4>
+                        <p>La filosofía no debe quedarse en la teoría académica. El conocimiento sin aplicación es inútil. Aquí tienes ejercicios prácticos para integrar en tu día a día:</p>
+                        <ul>
+                            <li><strong>Incomodidad Voluntaria:</strong> Toma duchas frías, ayuna ocasionalmente o camina bajo la lluvia sin paraguas. Acostumbrar al cuerpo y a la mente a la incomodidad controlada reduce dramáticamente el miedo a perder las comodidades modernas.</li>
+                            <li><strong>Premeditatio Malorum (Visualización Negativa):</strong> Dedica 5 minutos por la mañana a imaginar los peores escenarios posibles para tu día. Cuando (y si) ocurren, ya estarás preparado psicológicamente. Si no ocurren, sentirás una inmensa gratitud por la normalidad.</li>
+                            <li><strong>El Diario Nocturno:</strong> Al final del día, reflexiona en silencio: ¿Qué hice mal hoy? ¿Qué hice bien? ¿Qué hábito o emoción me dominó? La autoconsciencia es el primer e indispensable paso hacia el autodominio.</li>
+                        </ul>
+                        <p>Recuerda que la tranquilidad mental no se logra huyendo de las tormentas, sino construyendo un barco capaz de navegar a través de ellas. La resiliencia se entrena todos los días.</p>
+                    ` 
+                },
+                { 
+                    title: "Neurociencia del Hábito: Reprogramando tu Cerebro", 
+                    description: "La regla de los 21 días es un mito. Descubre la realidad científica sobre cómo se forman y destruyen los hábitos en tu red neuronal.", 
+                    source: {name: "BrainHealth"}, 
+                    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800", 
+                    category: "health", 
+                    fullText: `
+                        <p>Durante décadas, los gurús de la autoayuda han repetido que se necesitan 21 días para formar un hábito. Esta idea nació de un malentendido de los estudios de cirugía plástica de Maxwell Maltz en los años 60. La ciencia actual, liderada por investigadores como Phillippa Lally del University College de Londres, nos dice algo muy diferente: en promedio, se necesitan 66 días para que un nuevo comportamiento se vuelva automático, variando entre 18 y 254 días dependiendo de la complejidad de la tarea.</p>
+                        
+                        <h4>El Bucle del Hábito y la Mielina</h4>
+                        <p>Desde una perspectiva neurobiológica, un hábito no es más que una ruta neuronal fuertemente mielinizada. La mielina es una sustancia aislante que recubre los axones de las neuronas, permitiendo que las señales eléctricas viajen más rápido. Cuanto más repites una acción, más gruesa se vuelve esta capa. El proceso se divide en tres partes, popularizadas por Charles Duhigg:</p>
+                        <ul>
+                            <li><strong>La Señal (Cue):</strong> El detonante que le dice a tu cerebro que entre en modo automático. Puede ser una hora del día, un lugar o un estado emocional.</li>
+                            <li><strong>La Rutina:</strong> El comportamiento en sí mismo, ya sea físico, mental o emocional.</li>
+                            <li><strong>La Recompensa:</strong> El pico de dopamina o satisfacción que ayuda a tu cerebro a decidir si vale la pena recordar este bucle para el futuro.</li>
+                        </ul>
+                        
+                        <h4>La Trampa de la Dopamina Barata</h4>
+                        <p>En el entorno moderno, nuestro sistema de recompensas está secuestrado. Las redes sociales, la comida ultraprocesada y los videojuegos están diseñados para ofrecer recompensas masivas de dopamina sin requerir esfuerzo previo. Esto eleva nuestro umbral de tolerancia, haciendo que los "hábitos saludables" (como leer o hacer ejercicio), que ofrecen una liberación de dopamina más lenta y sostenida, parezcan aburridos en comparación.</p>
+                        
+                        <h4>Cómo Hackear tu Propio Sistema</h4>
+                        <p>Para construir hábitos duraderos, no dependas de la motivación; la motivación es una emoción temporal. Depende del diseño de tu entorno:</p>
+                        <ul>
+                            <li><strong>Fricción Ambiental:</strong> Haz que los malos hábitos requieran muchos pasos (guarda el mando de la TV en otra habitación, bloquea apps de tu móvil). Haz que los buenos hábitos tengan cero fricción (deja la ropa de deporte al lado de la cama).</li>
+                            <li><strong>Acumulación de Hábitos (Habit Stacking):</strong> Une el nuevo hábito a uno que ya tengas sólidamente establecido. Ejemplo: "Después de servirme mi café matutino (hábito actual), escribiré en mi diario durante 2 minutos (hábito nuevo)".</li>
+                            <li><strong>Identidad, no Metas:</strong> No te digas "quiero leer un libro". Dite a ti mismo "soy un lector". Los comportamientos son, en última instancia, un reflejo de nuestra autoimagen.</li>
+                        </ul>
+                    ` 
+                },
+                { 
+                    title: "La Psicología del Dinero: Estrategias de Riqueza Asimétrica", 
+                    description: "El éxito financiero no es una ciencia dura; es una habilidad blanda. Aprende a gestionar tus emociones frente al mercado.", 
+                    source: {name: "Capital Sapiens"}, 
+                    image: "https://images.unsplash.com/photo-1611974714024-4607a5015a73?auto=format&fit=crop&q=80&w=800", 
+                    category: "business", 
+                    fullText: `
+                        <p>Hacer dinero tiene muy poco que ver con tu nivel de inteligencia y mucho que ver con tu comportamiento. A menudo enseñamos las finanzas como un campo de las matemáticas, donde pones datos en una fórmula y obtienes qué hacer. Pero en el mundo real, la gente no toma decisiones financieras en una hoja de cálculo; las toman en la mesa de la cena o en una sala de reuniones, influenciados por su ego, su orgullo y sus miedos.</p>
+                        
+                        <h4>Ser Rico vs. Ser Próspero (Wealth)</h4>
+                        <p>Hay una diferencia fundamental que la sociedad suele ignorar. "Rico" (Rich) es un estado actual. Significa que tienes ingresos altos hoy para comprar coches caros o ropa de diseñador. "Prosperidad" o "Riqueza" (Wealth), por otro lado, es lo que no se ve. Es el dinero que no se ha gastado. Son los activos financieros, las inversiones y el capital no ejecutado.</p>
+                        <p>La riqueza te otorga el activo más valioso de todos: el control sobre tu tiempo. El mayor dividendo que puede pagar el dinero es la capacidad de despertarte cada mañana y decir: "Hoy puedo hacer lo que quiera".</p>
+                        
+                        <h4>La Octava Maravilla: El Interés Compuesto</h4>
+                        <p>El cerebro humano no está diseñado para comprender el crecimiento exponencial. Si te digo que ahorres 100 dólares al mes al 8% de interés anual, tu cerebro intuitivo subestima el resultado a 30 años. No es una suma lineal. La mayor parte del crecimiento ocurre en la fase final de la inversión.</p>
+                        <ul>
+                            <li>Warren Buffett acumuló casi el 95% de su fortuna neta <em>después</em> de cumplir 65 años. Su secreto no fue solo elegir buenas acciones, sino empezar a los 10 años y no interrumpir el proceso de interés compuesto.</li>
+                            <li><strong>Regla de Oro:</strong> La primera regla del interés compuesto es nunca interrumpirlo innecesariamente. Las crisis bursátiles son peajes que hay que pagar, no multas que hay que evitar.</li>
+                        </ul>
+                        
+                        <h4>Apuestas Asimétricas y Antifragilidad</h4>
+                        <p>Como plantea Nassim Taleb, un portafolio robusto sobrevive a las crisis, pero un portafolio <em>antifrágil</em> se beneficia de ellas. Una estrategia asimétrica significa buscar oportunidades donde la pérdida máxima está estrictamente limitada (pierdes 1X), pero la ganancia potencial es ilimitada (puedes ganar 10X, 50X o 100X).</p>
+                        <p>Para la mayoría de los inversores individuales, la mejor "apuesta asimétrica" es invertir constantemente en fondos indexados globales de bajo coste, ignorar las noticias financieras y dedicar su tiempo y energía a aumentar sus ingresos activos.</p>
+                    ` 
+                },
+                { 
+                    title: "Simbiosis Cognitiva: Tu Cerebro en la Era de la IA", 
+                    description: "La IA no te reemplazará; te reemplazará alguien que use IA. Aprende a construir tu 'Segundo Cerebro' tecnológico.", 
+                    source: {name: "Tech Mastery"}, 
+                    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800", 
+                    category: "technology", 
+                    fullText: `
+                        <p>Estamos atravesando un cambio de paradigma histórico. La Inteligencia Artificial Generativa no es simplemente una herramienta de software más; es un exoesqueleto para la mente humana. A lo largo de la historia, la tecnología nos ha ayudado a externalizar el trabajo físico (motores, grúas, tractores). Hoy, por primera vez, estamos externalizando el trabajo cognitivo.</p>
+                        
+                        <h4>De Creador a Curador y Editor</h4>
+                        <p>El cuello de botella de la productividad humana ya no es la generación de contenido (escribir código, redactar correos, diseñar imágenes). El costo de producción ha bajado casi a cero. El nuevo cuello de botella es la <strong>visión, el gusto y la capacidad de discernimiento</strong>.</p>
+                        <p>Los profesionales del futuro no se sentarán a mirar una página en blanco. Su trabajo consistirá en dirigir modelos de IA, evaluar sus múltiples outputs, corregir alucinaciones y ensamblar las piezas correctas para crear un producto final impecable. El rol del "trabajador del conocimiento" evoluciona hacia el de un "director de orquesta".</p>
+                        
+                        <h4>El Peligro de la Descarga Cognitiva (Cognitive Offloading)</h4>
+                        <p>A pesar de sus beneficios, existe un riesgo neurológico. Cuando usamos el GPS del móvil en exceso, la parte de nuestro cerebro dedicada a la navegación espacial (el hipocampo) se atrofia. ¿Qué pasará con nuestra capacidad de razonamiento crítico cuando la IA sintetice todos nuestros documentos y libros?</p>
+                        <ul>
+                            <li>No uses la IA para que piense <em>por ti</em>. Úsala para pensar <em>contigo</em>.</li>
+                            <li><strong>El sparring socrático:</strong> En lugar de pedirle a la IA que te dé la respuesta final, pídele que critique tus ideas, que te haga preguntas difíciles o que te señale los sesgos en tu razonamiento.</li>
+                        </ul>
+                        
+                        <h4>Construyendo un Segundo Cerebro Interconectado</h4>
+                        <p>La metodología del "Segundo Cerebro" (popularizada por Tiago Forte) cobra una nueva dimensión con los Modelos de Lenguaje Grande (LLMs). En lugar de depender de tu memoria biológica —que es falible y volátil— deberías externalizar tus notas, aprendizajes y proyectos en una bóveda digital (como Notion, Obsidian o Roam).</p>
+                        <p>Al conectar una IA personalizada a tus propias notas, ya no solo buscas palabras clave. Entras en una conversación dinámica con tu propio conocimiento pasado, descubriendo conexiones latentes entre ideas que leíste hace años y problemas que estás intentando resolver hoy. Esa es la verdadera simbiosis cognitiva.</p>
+                    ` 
+                }
+            ].filter(a => cat === 'general' ? true : a.category === cat);
+            
+            return [...userMatch, ...system];
         }
 
-        window.onload = () => fetchArticles('general');
+        function loadCategory(cat) {
+            const titles = {general: "Sabiduría General", health: "Bienestar", business: "Finanzas", technology: "Futuro"};
+            document.getElementById('category-name').innerText = titles[cat];
+            renderArticles(getMockArticles(cat));
+            showSection('home');
+        }
+
+        window.onload = () => loadCategory('general');
     </script>
 </body>
 </html>
