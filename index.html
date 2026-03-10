@@ -74,7 +74,7 @@
     <nav class="bg-white border-b border-slate-100 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showSection('home')">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="loadCategory('general')">
                     <span class="text-2xl font-bold tracking-tighter text-teal-700 serif">Sapiens<span class="text-orange-500">.</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider text-slate-500">
@@ -103,12 +103,10 @@
                 
                 <!-- Columna de Artículos -->
                 <div class="lg:col-span-8">
-                    <h2 id="category-name" class="text-3xl font-bold mb-8 text-slate-900 serif">Lo último en Consejos</h2>
+                    <h2 id="category-name" class="text-3xl font-bold mb-8 text-slate-900 serif border-b-2 border-teal-600 pb-2 inline-block">Lo último en Consejos</h2>
                     
                     <div id="news-grid" class="space-y-10">
-                        <!-- Esqueleto de carga inicial -->
-                        <div class="skeleton h-64 rounded-2xl w-full"></div>
-                        <div class="skeleton h-48 rounded-2xl w-full"></div>
+                        <!-- Contenido dinámico aquí -->
                     </div>
 
                     <!-- AdSense In-Feed -->
@@ -118,7 +116,7 @@
                 <!-- Barra Lateral -->
                 <aside class="lg:col-span-4 space-y-8">
                     
-                    <!-- ✨ NUEVO: WIDGET DE GEMINI IA -->
+                    <!-- ✨ WIDGET DE GEMINI IA -->
                     <div class="bg-gradient-to-br from-teal-50 to-white p-6 rounded-2xl border border-teal-100 shadow-sm ring-1 ring-teal-500/10">
                         <h3 class="font-bold text-lg mb-4 text-teal-900 serif flex items-center">
                             ✨ Consultorio Sapiens IA
@@ -149,12 +147,12 @@
             <div class="max-w-2xl mx-auto bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
                 <h2 class="text-3xl font-bold mb-6 text-center serif">Hablemos</h2>
                 <p class="text-center text-slate-500 mb-8">¿Deseas colaborar o sugerir un tema? Completa el formulario.</p>
-                <form class="space-y-4">
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Mensaje enviado con éxito'); showSection('home');">
                     <div class="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="Nombre" class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
-                        <input type="email" placeholder="Email" class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
+                        <input type="text" placeholder="Nombre" required class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
+                        <input type="email" placeholder="Email" required class="border border-slate-200 p-3 rounded-xl outline-none focus:border-teal-500">
                     </div>
-                    <textarea placeholder="¿En qué podemos ayudarte?" class="w-full border border-slate-200 p-3 rounded-xl h-32 outline-none focus:border-teal-500"></textarea>
+                    <textarea placeholder="¿En qué podemos ayudarte?" required class="w-full border border-slate-200 p-3 rounded-xl h-32 outline-none focus:border-teal-500"></textarea>
                     <button class="w-full bg-teal-700 text-white font-bold py-4 rounded-xl hover:bg-teal-800 transition">Enviar Mensaje</button>
                 </form>
             </div>
@@ -198,9 +196,9 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-100 mt-20 py-12">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <span class="text-xl font-bold text-teal-700 serif">Sapiens<span class="text-orange-500">.</span></span>
+            <span class="text-xl font-bold text-teal-700 serif cursor-pointer" onclick="loadCategory('general')">Sapiens<span class="text-orange-500">.</span></span>
             <div class="flex justify-center space-x-6 my-6 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                <a href="#" onclick="showSection('home')" class="hover:text-teal-700">Inicio</a>
+                <a href="#" onclick="loadCategory('general')" class="hover:text-teal-700">Inicio</a>
                 <a href="#" onclick="showSection('legal')" class="hover:text-teal-700">Privacidad</a>
                 <a href="#" onclick="showSection('contacto')" class="hover:text-teal-700">Contacto</a>
             </div>
@@ -279,7 +277,6 @@
                 const prompt = `Resume esta noticia y extrae 3 consejos prácticos basados en ella. Noticia: "${title}. ${description}". Responde en español con un resumen corto y una lista de 3 puntos.`;
                 const summary = await callGemini(prompt, "Eres un analista experto que resume noticias para lectores ocupados.");
                 
-                // Formateo básico de la respuesta (Gemini suele devolver Markdown)
                 const formattedSummary = summary.replace(/\n/g, '<br>');
                 content.innerHTML = `<div class="prose prose-sm text-slate-600">${formattedSummary}</div>`;
             } catch (error) {
@@ -291,7 +288,7 @@
             document.getElementById('ia-modal').classList.add('hidden');
         }
 
-        // LÓGICA DE NOTICIAS (GNEWS + MOCKS)
+        // LÓGICA DE NOTICIAS (GNEWS + MOCKS con Imágenes funcionales)
         async function fetchArticles(category = 'general') {
             const grid = document.getElementById('news-grid');
             const catName = document.getElementById('category-name');
@@ -302,13 +299,17 @@
             try {
                 let articles;
                 if (!API_KEY || API_KEY === 'TU_API_KEY_AQUI') {
-                    articles = getMockArticles(category);
+                    // Carga simulada con delay para efecto visual
+                    setTimeout(() => {
+                        articles = getMockArticles(category);
+                        renderArticles(articles);
+                    }, 500);
                 } else {
                     const response = await fetch(`https://gnews.io/api/v4/top-headlines?category=${category}&lang=es&country=es&max=8&apikey=${API_KEY}`);
                     const data = await response.json();
                     articles = data.articles;
+                    renderArticles(articles);
                 }
-                renderArticles(articles);
             } catch (error) {
                 renderArticles(getMockArticles(category));
             }
@@ -322,8 +323,10 @@
                 const card = `
                     <article class="group bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-xl transition-shadow duration-300">
                         <div class="md:flex">
-                            <div class="md:flex-shrink-0 relative overflow-hidden">
-                                ${art.image ? `<img class="h-48 w-full object-cover md:w-56 group-hover:scale-105 transition-transform duration-500" src="${art.image}" alt="Imagen noticia">` : `<div class="h-48 w-full md:w-56 bg-slate-100 flex items-center justify-center text-slate-300 italic text-xs">Sin imagen</div>`}
+                            <div class="md:flex-shrink-0 relative overflow-hidden bg-slate-200">
+                                <img class="h-48 w-full object-cover md:w-56 group-hover:scale-105 transition-transform duration-500" 
+                                     src="${art.image || 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=400'}" 
+                                     alt="Imagen de artículo">
                             </div>
                             <div class="p-8 flex-1">
                                 <div class="flex justify-between items-start">
@@ -367,34 +370,32 @@
         }
 
         function getMockArticles(cat) {
-            // Datos de respaldo con contenido más variado para testing
-            const mocks = [
-                {
-                    title: `El secreto japonés para una vida larga y saludable`,
-                    description: "No se trata de dietas extremas, sino de un concepto llamado 'Ikigai'. Exploramos cómo el propósito de vida influye directamente en tu longevidad y bienestar diario.",
-                    source: { name: "Bienestar" },
-                    url: "#",
-                    image: null
-                },
-                {
-                    title: "Cómo organizar tus finanzas en menos de 20 minutos a la semana",
-                    description: "El sistema de los tres cubos te permite automatizar tus ahorros e inversiones sin sacrificar tu estilo de vida actual. Una guía para perezosos inteligentes.",
-                    source: { name: "Economía" },
-                    url: "#",
-                    image: null
-                },
-                {
-                    title: "La inteligencia artificial en el hogar: ¿Realidad o moda?",
-                    description: "Analizamos los dispositivos que realmente ahorran tiempo y energía frente a los gadgets que solo terminan acumulando polvo en un cajón.",
-                    source: { name: "Hogar Tech" },
-                    url: "#",
-                    image: null
-                }
-            ];
-            return mocks;
+            const imgSalud = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600";
+            const imgFinanzas = "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=600";
+            const imgTech = "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600";
+            const imgGral = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=600";
+
+            const data = {
+                general: [
+                    { title: "El arte de vivir con propósito", description: "Descubre cómo pequeños cambios en tu rutina diaria pueden llevarte a una vida más plena y satisfactoria según expertos en psicología.", source: {name: "Editorial"}, image: imgGral, url: "#" },
+                    { title: "Cómo el café afecta tu productividad", description: "Analizamos los mejores momentos del día para consumir cafeína y maximizar tu enfoque sin afectar el sueño.", source: {name: "Hábitos"}, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600", url: "#" }
+                ],
+                health: [
+                    { title: "El secreto japonés para una vida larga", description: "El concepto de 'Ikigai' no es solo espiritual; tiene bases científicas que demuestran su impacto en la longevidad biológica.", source: {name: "Bienestar"}, image: imgSalud, url: "#" },
+                    { title: "5 Ejercicios de movilidad para oficina", description: "Si pasas más de 6 horas sentado, estos estiramientos de 2 minutos salvarán tu espalda y cuello a largo plazo.", source: {name: "Salud Física"}, image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=600", url: "#" }
+                ],
+                business: [
+                    { title: "Ahorra el 20% de tu sueldo sin esfuerzo", description: "La regla del 50-30-20 explicada paso a paso para personas que nunca han logrado mantener un presupuesto estable.", source: {name: "Economía"}, image: imgFinanzas, url: "#" },
+                    { title: "Inversiones seguras para principiantes", description: "Guía completa sobre fondos indexados y por qué son la mejor opción para construir riqueza a largo plazo en 2024.", source: {name: "Inversión"}, image: "https://images.unsplash.com/photo-1611974714024-4607a55d405c?auto=format&fit=crop&q=80&w=600", url: "#" }
+                ],
+                technology: [
+                    { title: "Gadgets que realmente ahorran energía", description: "Analizamos los dispositivos inteligentes que optimizan el consumo de luz y agua en el hogar, amortizándose en menos de un año.", source: {name: "Hogar Smart"}, image: imgTech, url: "#" },
+                    { title: "Cómo usar la IA para organizar tu agenda", description: "Herramientas gratuitas que utilizan modelos de lenguaje para gestionar tus reuniones y priorizar tus tareas automáticamente.", source: {name: "Tech Pro"}, image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600", url: "#" }
+                ]
+            };
+            return data[cat] || data.general;
         }
 
-        // Carga inicial
         window.onload = () => fetchArticles('general');
     </script>
 </body>
